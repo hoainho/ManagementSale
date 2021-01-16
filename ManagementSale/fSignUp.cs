@@ -15,18 +15,7 @@ namespace ManagementSale
         public fSignUp()
         {
             InitializeComponent();
-            //CoffeeContextDB context = new CoffeeContextDB();
-            //List<AccountType> ListType = context.AccountTypes.ToList();
-            //FillTypeAccount(ListType);
         }
-        //private void FillTypeAccount( List<AccountType> ListType)
-        //{
-        //    this.cmbAccountType.DataSource = ListType;
-        //    this.cmbAccountType.DisplayMember = "nameType";
-        //    this.cmbAccountType.ValueMember = "nameType";
-        //}
-
-       
         private void txtDisplayName_Validating(object sender, CancelEventArgs e)
         {
             TextBox temp = (TextBox)sender;

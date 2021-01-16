@@ -29,10 +29,14 @@ namespace ManagementSale
         /// </summary>
         private void InitializeComponent()
         {
-            this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.dgvTableDetails = new System.Windows.Forms.DataGridView();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFoodCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
@@ -46,37 +50,76 @@ namespace ManagementSale
             this.nmFoodCount = new System.Windows.Forms.NumericUpDown();
             this.cmbFood = new System.Windows.Forms.ComboBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtTable = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableDetails)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmFoodCount)).BeginInit();
             this.SuspendLayout();
             // 
-            // flpTable
-            // 
-            this.flpTable.Location = new System.Drawing.Point(3, 1);
-            this.flpTable.Name = "flpTable";
-            this.flpTable.Size = new System.Drawing.Size(719, 619);
-            this.flpTable.TabIndex = 9;
-            // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.listView1);
+            this.panel4.Controls.Add(this.panel1);
+            this.panel4.Controls.Add(this.txtTable);
+            this.panel4.Controls.Add(this.dgvTableDetails);
             this.panel4.Location = new System.Drawing.Point(725, 80);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(431, 458);
             this.panel4.TabIndex = 8;
             // 
-            // listView1
+            // dgvTableDetails
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 3);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(425, 452);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.dgvTableDetails.AllowUserToAddRows = false;
+            this.dgvTableDetails.AllowUserToDeleteRows = false;
+            this.dgvTableDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTableDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colNo,
+            this.colFoodName,
+            this.colFoodCategory,
+            this.colPrice});
+            this.dgvTableDetails.Location = new System.Drawing.Point(3, 30);
+            this.dgvTableDetails.Name = "dgvTableDetails";
+            this.dgvTableDetails.ReadOnly = true;
+            this.dgvTableDetails.RowHeadersWidth = 51;
+            this.dgvTableDetails.RowTemplate.Height = 24;
+            this.dgvTableDetails.Size = new System.Drawing.Size(425, 425);
+            this.dgvTableDetails.TabIndex = 0;
+            // 
+            // colNo
+            // 
+            this.colNo.HeaderText = "STT";
+            this.colNo.MinimumWidth = 6;
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Width = 50;
+            // 
+            // colFoodName
+            // 
+            this.colFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFoodName.HeaderText = "Tên Món";
+            this.colFoodName.MinimumWidth = 6;
+            this.colFoodName.Name = "colFoodName";
+            this.colFoodName.ReadOnly = true;
+            // 
+            // colFoodCategory
+            // 
+            this.colFoodCategory.HeaderText = "Loại";
+            this.colFoodCategory.MinimumWidth = 6;
+            this.colFoodCategory.Name = "colFoodCategory";
+            this.colFoodCategory.ReadOnly = true;
+            this.colFoodCategory.Width = 121;
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Giá ";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 80;
             // 
             // panel3
             // 
@@ -91,6 +134,15 @@ namespace ManagementSale
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(431, 76);
             this.panel3.TabIndex = 6;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackgroundImage = global::ManagementSale.Properties.Resources.unnamed;
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(338, 11);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 56);
+            this.flowLayoutPanel1.TabIndex = 11;
             // 
             // label2
             // 
@@ -150,7 +202,7 @@ namespace ManagementSale
             this.btnCheckOut.Name = "btnCheckOut";
             this.btnCheckOut.Size = new System.Drawing.Size(88, 58);
             this.btnCheckOut.TabIndex = 6;
-            this.btnCheckOut.Text = "Thêm Món";
+            this.btnCheckOut.Text = "Thanh Toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -225,15 +277,31 @@ namespace ManagementSale
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(193, 24);
             this.cmbCategory.TabIndex = 0;
+            this.cmbCategory.TextChanged += new System.EventHandler(this.cmbCategory_TextChanged);
             // 
-            // flowLayoutPanel1
+            // flpTable
             // 
-            this.flowLayoutPanel1.BackgroundImage = global::ManagementSale.Properties.Resources.cropped_cropped_moviesdrop_logo;
-            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(338, 11);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 56);
-            this.flowLayoutPanel1.TabIndex = 11;
+            this.flpTable.Location = new System.Drawing.Point(0, 1);
+            this.flpTable.Name = "flpTable";
+            this.flpTable.Size = new System.Drawing.Size(725, 619);
+            this.flpTable.TabIndex = 9;
+            // 
+            // txtTable
+            // 
+            this.txtTable.AutoSize = true;
+            this.txtTable.Location = new System.Drawing.Point(174, 4);
+            this.txtTable.Name = "txtTable";
+            this.txtTable.Size = new System.Drawing.Size(0, 17);
+            this.txtTable.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::ManagementSale.Properties.Resources.cafe_eshop_market_shop_store_icon_1320166001182566406;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Location = new System.Drawing.Point(122, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(26, 26);
+            this.panel1.TabIndex = 2;
             // 
             // fTable
             // 
@@ -248,7 +316,10 @@ namespace ManagementSale
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RightToLeftLayout = true;
             this.Text = "Sơ Đồ Quán";
+            this.Load += new System.EventHandler(this.fTable_Load);
             this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTableDetails)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmDiscount)).EndInit();
@@ -260,10 +331,7 @@ namespace ManagementSale
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flpTable;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
@@ -279,5 +347,13 @@ namespace ManagementSale
         private System.Windows.Forms.NumericUpDown nmFoodCount;
         private System.Windows.Forms.ComboBox cmbFood;
         private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.FlowLayoutPanel flpTable;
+        private System.Windows.Forms.DataGridView dgvTableDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFoodName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFoodCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label txtTable;
     }
 }
