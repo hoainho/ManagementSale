@@ -6,32 +6,24 @@ namespace ManagementSale.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Account")]
-    public partial class Account
+    [Table("AccountType")]
+    public partial class AccountType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
+        public AccountType()
         {
-            Bills = new HashSet<Bill>();
+            Accounts = new HashSet<Account>();
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int idType { get; set; }
+
+        [Required]
         [StringLength(50)]
-        public string UserName { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string DisplayName { get; set; }
-
-        [Required]
-        [StringLength(1000)]
-        public string PassWord { get; set; }
-
-        public int Type { get; set; }
-
-        public virtual AccountType AccountType { get; set; }
+        public string nameType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

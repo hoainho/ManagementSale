@@ -103,7 +103,7 @@ namespace ManagementSale
             // 
             // btnSignUp
             // 
-            this.btnSignUp.Location = new System.Drawing.Point(511, 481);
+            this.btnSignUp.Location = new System.Drawing.Point(447, 409);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(108, 53);
             this.btnSignUp.TabIndex = 5;
@@ -113,7 +113,7 @@ namespace ManagementSale
             // 
             // btnSignIn
             // 
-            this.btnSignIn.Location = new System.Drawing.Point(511, 406);
+            this.btnSignIn.Location = new System.Drawing.Point(584, 409);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(108, 53);
             this.btnSignIn.TabIndex = 3;

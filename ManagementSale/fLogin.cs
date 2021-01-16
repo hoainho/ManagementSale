@@ -61,9 +61,7 @@ namespace ManagementSale
                     }
                     else
                     {
-                        fHome home = new fHome();
                         this.Hide();
-                        home.Show();
                         if (accountAccuracy != null)
                         {
                             accountAccuracy(checkUser);
@@ -76,15 +74,12 @@ namespace ManagementSale
 
         private void fLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult Result = MessageBox.Show("Bạn Chắc Chắn Muốn Thoát Chương Trình ? ", "Thông Báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (Result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
-            else
+            DialogResult msgClose = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (msgClose == DialogResult.No)
             {
                 e.Cancel = true;
             }
+
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

@@ -67,6 +67,12 @@
     <Compile Include="fAccountDetails.Designer.cs">
       <DependentUpon>fAccountDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="fHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fHelp.Designer.cs">
+      <DependentUpon>fHelp.cs</DependentUpon>
+    </Compile>
     <Compile Include="fHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,7 +91,14 @@
     <Compile Include="fSignUp.Designer.cs">
       <DependentUpon>fSignUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="fTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTable.Designer.cs">
+      <DependentUpon>fTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountType.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\BillInfo.cs" />
     <Compile Include="Models\CoffeeContextDB.cs" />
@@ -101,6 +114,9 @@
     <EmbeddedResource Include="fAccountDetails.resx">
       <DependentUpon>fAccountDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fHelp.resx">
+      <DependentUpon>fHelp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fHome.resx">
       <DependentUpon>fHome.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fSignUp.resx">
       <DependentUpon>fSignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fTable.resx">
+      <DependentUpon>fTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

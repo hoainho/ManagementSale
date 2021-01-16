@@ -13,6 +13,7 @@ namespace ManagementSale.Models
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AccountType> AccountTypes { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
         public virtual DbSet<BillInfo> BillInfoes { get; set; }
         public virtual DbSet<Food> Foods { get; set; }
@@ -22,6 +23,17 @@ namespace ManagementSale.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Bills)
+                .WithRequired(e => e.Account)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AccountType>()
+                .HasMany(e => e.Accounts)
+                .WithRequired(e => e.AccountType)
+                .HasForeignKey(e => e.Type)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Bill>()
                 .HasMany(e => e.BillInfoes)
                 .WithRequired(e => e.Bill)

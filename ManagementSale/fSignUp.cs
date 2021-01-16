@@ -15,36 +15,18 @@ namespace ManagementSale
         public fSignUp()
         {
             InitializeComponent();
-            CoffeeContextDB context = new CoffeeContextDB();
-            List<Account> listAcc = context.Accounts.ToList();
-            
+            //CoffeeContextDB context = new CoffeeContextDB();
+            //List<AccountType> ListType = context.AccountTypes.ToList();
+            //FillTypeAccount(ListType);
         }
+        //private void FillTypeAccount( List<AccountType> ListType)
+        //{
+        //    this.cmbAccountType.DataSource = ListType;
+        //    this.cmbAccountType.DisplayMember = "nameType";
+        //    this.cmbAccountType.ValueMember = "nameType";
+        //}
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            Application.Restart();
-        }
-        private void FillTypeAccount( List<Account> listAcc )
-        {
-            this.cmbAccountType.DataSource = listAcc;
-            this.cmbAccountType.DisplayMember = "Type";
-            this.cmbAccountType.ValueMember = "Type";
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (txtDisplayName.Text == "")
-            {
-                MessageBox.Show("Vui lòng không bỏ trống !","Thông Báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-            else
-            {
-                Account acc = new Account();
-
-            }
-        }
-
+       
         private void txtDisplayName_Validating(object sender, CancelEventArgs e)
         {
             TextBox temp = (TextBox)sender;
@@ -59,16 +41,40 @@ namespace ManagementSale
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            
-            DialogResult msgClose = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?","Thông Báo",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if(msgClose == DialogResult.Yes)
+            if (txtDisplayName.Text == "" || txtUserName.Text == "" || txtPassword.Text == "" || txtPasswordConfirm.Text == "")
             {
-                Application.Exit();
+                MessageBox.Show("Vui lòng không bỏ trống các trường !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
+            else
+            {
+                using (var _dbContext = new CoffeeContextDB())
+                {
+                    Account acc = new Account();
+                    acc.DisplayName = txtDisplayName.Text;
+                    acc.UserName = txtUserName.Text;
+                    acc.PassWord = txtPassword.Text;
+                    acc.Type = 1;
+                    _dbContext.Accounts.Add(acc);
+                    _dbContext.SaveChanges();
+                }
+                this.Close();
+                MessageBox.Show("Chúc Mừng Bạn Gia Nhập 707 Team !", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtDisplayName.Text = "";
+                txtUserName.Text = "";
+                txtPassword.Text = "";
+                txtPasswordConfirm.Text = "";
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            fLogin flogin = new fLogin();
+            this.Close();
+            flogin.Show();
         }
     }
 }
