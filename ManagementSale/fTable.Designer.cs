@@ -30,11 +30,16 @@ namespace ManagementSale
         private void InitializeComponent()
         {
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblTableName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTable = new System.Windows.Forms.Label();
             this.dgvTableDetails = new System.Windows.Forms.DataGridView();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
@@ -49,10 +54,6 @@ namespace ManagementSale
             this.cmbFood = new System.Windows.Forms.ComboBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableDetails)).BeginInit();
             this.panel3.SuspendLayout();
@@ -63,6 +64,7 @@ namespace ManagementSale
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.lblTableName);
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Controls.Add(this.txtTable);
             this.panel4.Controls.Add(this.dgvTableDetails);
@@ -71,11 +73,19 @@ namespace ManagementSale
             this.panel4.Size = new System.Drawing.Size(431, 458);
             this.panel4.TabIndex = 8;
             // 
+            // lblTableName
+            // 
+            this.lblTableName.AutoSize = true;
+            this.lblTableName.Location = new System.Drawing.Point(216, 7);
+            this.lblTableName.Name = "lblTableName";
+            this.lblTableName.Size = new System.Drawing.Size(0, 17);
+            this.lblTableName.TabIndex = 3;
+            // 
             // panel1
             // 
             this.panel1.BackgroundImage = global::ManagementSale.Properties.Resources.cafe_eshop_market_shop_store_icon_1320166001182566406;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(122, 4);
+            this.panel1.Location = new System.Drawing.Point(182, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(26, 26);
             this.panel1.TabIndex = 2;
@@ -83,7 +93,7 @@ namespace ManagementSale
             // txtTable
             // 
             this.txtTable.AutoSize = true;
-            this.txtTable.Location = new System.Drawing.Point(174, 4);
+            this.txtTable.Location = new System.Drawing.Point(234, 3);
             this.txtTable.Name = "txtTable";
             this.txtTable.Size = new System.Drawing.Size(0, 17);
             this.txtTable.TabIndex = 1;
@@ -105,11 +115,45 @@ namespace ManagementSale
             this.dgvTableDetails.RowTemplate.Height = 24;
             this.dgvTableDetails.Size = new System.Drawing.Size(425, 425);
             this.dgvTableDetails.TabIndex = 0;
-            this.dgvTableDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTableDetails_CellClick);
+            // 
+            // colNo
+            // 
+            this.colNo.FillWeight = 106.9519F;
+            this.colNo.HeaderText = "STT";
+            this.colNo.MinimumWidth = 6;
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Width = 50;
+            // 
+            // colFoodName
+            // 
+            this.colFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFoodName.FillWeight = 97.68271F;
+            this.colFoodName.HeaderText = "Tên Món";
+            this.colFoodName.MinimumWidth = 6;
+            this.colFoodName.Name = "colFoodName";
+            this.colFoodName.ReadOnly = true;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "SL";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.Width = 50;
+            // 
+            // colPrice
+            // 
+            this.colPrice.FillWeight = 97.68271F;
+            this.colPrice.HeaderText = "Giá ";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 60;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.flowLayoutPanel1);
+            this.panel3.Controls.Add(this.txtTotalPrice);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.nmDiscount);
@@ -121,14 +165,13 @@ namespace ManagementSale
             this.panel3.Size = new System.Drawing.Size(431, 76);
             this.panel3.TabIndex = 6;
             // 
-            // flowLayoutPanel1
+            // txtTotalPrice
             // 
-            this.flowLayoutPanel1.BackgroundImage = global::ManagementSale.Properties.Resources.unnamed;
-            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(338, 11);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 56);
-            this.flowLayoutPanel1.TabIndex = 11;
+            this.txtTotalPrice.Location = new System.Drawing.Point(224, 28);
+            this.txtTotalPrice.Multiline = true;
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.Size = new System.Drawing.Size(100, 22);
+            this.txtTotalPrice.TabIndex = 10;
             // 
             // label2
             // 
@@ -184,7 +227,7 @@ namespace ManagementSale
             // 
             // btnCheckOut
             // 
-            this.btnCheckOut.Location = new System.Drawing.Point(234, 9);
+            this.btnCheckOut.Location = new System.Drawing.Point(336, 9);
             this.btnCheckOut.Name = "btnCheckOut";
             this.btnCheckOut.Size = new System.Drawing.Size(88, 58);
             this.btnCheckOut.TabIndex = 6;
@@ -230,6 +273,7 @@ namespace ManagementSale
             this.btnAddFood.TabIndex = 6;
             this.btnAddFood.Text = "Thêm Món";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // nmFoodCount
             // 
@@ -273,41 +317,6 @@ namespace ManagementSale
             this.flpTable.Size = new System.Drawing.Size(725, 619);
             this.flpTable.TabIndex = 9;
             // 
-            // colNo
-            // 
-            this.colNo.FillWeight = 106.9519F;
-            this.colNo.HeaderText = "STT";
-            this.colNo.MinimumWidth = 6;
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Width = 50;
-            // 
-            // colFoodName
-            // 
-            this.colFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFoodName.FillWeight = 97.68271F;
-            this.colFoodName.HeaderText = "Tên Món";
-            this.colFoodName.MinimumWidth = 6;
-            this.colFoodName.Name = "colFoodName";
-            this.colFoodName.ReadOnly = true;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "SL";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 50;
-            // 
-            // colPrice
-            // 
-            this.colPrice.FillWeight = 97.68271F;
-            this.colPrice.HeaderText = "Giá ";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.ReadOnly = true;
-            this.colPrice.Width = 60;
-            // 
             // fTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -338,7 +347,6 @@ namespace ManagementSale
         #endregion
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.NumericUpDown nmDiscount;
@@ -360,5 +368,7 @@ namespace ManagementSale
         private System.Windows.Forms.DataGridViewTextBoxColumn colFoodName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
+        private System.Windows.Forms.Label lblTableName;
+        private System.Windows.Forms.TextBox txtTotalPrice;
     }
 }
