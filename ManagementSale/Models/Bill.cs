@@ -32,14 +32,14 @@ namespace ManagementSale.Models
         public double? totalPrice { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string UserName { get; set; }
 
         public virtual Account Account { get; set; }
 
+        public virtual TableFood TableFood { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfo> BillInfoes { get; set; }
-
-        public virtual TableFood TableFood { get; set; }
     }
 }

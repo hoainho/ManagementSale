@@ -13,7 +13,9 @@ namespace ManagementSale
     public partial class fTable : Form
     {
         private const string Format = "dd/mm/yyyy";
-
+        private int ActiveTable = 0;
+        private int No = 1;
+        private Button SelectedTable;
         public fTable()
         {
             InitializeComponent();
@@ -25,11 +27,13 @@ namespace ManagementSale
             CoffeeContextDB context = new CoffeeContextDB();
             List<FoodCategory> listCategory = context.FoodCategories.ToList();
             List<Food> listFood = context.Foods.ToList();
+            List<BillInfo> listBill = context.BillInfoes.ToList();
             cmbType(listCategory);
             cmbFoody(listFood);
-            int dong = 10, cot = 10;
-            InitTable(dong, cot);
+            int row = 5, col = 5;
+            InitTable(row, col);
             StatusSetting();
+            bindDgvBill(listBill);
         }
         private void cmbType(List<FoodCategory> listCategory )
         {
@@ -47,67 +51,83 @@ namespace ManagementSale
         {
             using (var _dbContext = new CoffeeContextDB())
             {
-                int soThuTuGhe;
-                foreach (Button ghe in flpTable.Controls.OfType<Button>())
+                int indexTable;
+                foreach (Button Table in flpTable.Controls.OfType<Button>())
                 {
-                    soThuTuGhe = int.Parse(ghe.Text);
-                    if (_dbContext.TableFoods.Any(x => x.id == soThuTuGhe))
+                    indexTable = int.Parse(Table.Text);
+                    if (_dbContext.Bills.Any(x => x.idTable == indexTable))
                     {
-                        ghe.BackColor = Color.DarkGoldenrod;
+                        Table.BackColor = Color.DarkGoldenrod;
                     }
                 }
             }
         }
-        private void InitTable(int dong, int cot)
+        private void InitTable(int row, int col)
         {
-            Button btnGhe;
-            int soThuTu = 1;
-            int x = 10, y = 10, khoangCach = 100;
-            for (int i = 0; i < dong; i++)
+            Button btnTable;
+            int index = 1;
+            int x = 10, y = 10, marginX = 100;
+            for (int i = 0; i < row; i++)
             {
                 x =10;
-                for (int j = 0; j < cot; j++)
+                for (int j = 0; j < col; j++)
                 {
                     //Khoi tao doi tuong Button la Ghe
-                    btnGhe = new Button();
-                    btnGhe.BackColor = System.Drawing.Color.White;
-                    btnGhe.Location = new System.Drawing.Point(x, y);
-                    btnGhe.Name = "btnGhe" + soThuTu;
-                    btnGhe.Size = new System.Drawing.Size(100,100);
-                    btnGhe.TabIndex = 0;
-                    btnGhe.Text = soThuTu.ToString();
-                    btnGhe.UseVisualStyleBackColor = false;
-                    btnGhe.Click += BtnGhe_Click;
-                    flpTable.Controls.Add(btnGhe);
-                    soThuTu++;
-                    x += khoangCach;
+                    btnTable = new Button();
+                    btnTable.BackColor = System.Drawing.Color.White;
+                    btnTable.Location = new System.Drawing.Point(x, y);
+                    btnTable.Name = "btnTable" + index;
+                    btnTable.Size = new System.Drawing.Size(100,100);
+                    btnTable.TabIndex = 0;
+                    btnTable.Text = index.ToString();
+                    btnTable.UseVisualStyleBackColor = false;
+                    btnTable.Click += BtnTable_Click;
+                    flpTable.Controls.Add(btnTable);
+                    index++;
+                    x += marginX;
                 }
-                y += khoangCach;
+                y += marginX;
             }
-        }
-        private void BtnGhe_Click(object sender, EventArgs e)
-        {
-            //todo
-            Button btnGhe = (Button)sender;
-            DoiMauGhe(btnGhe);
-        }
-        private void DoiMauGhe(Button btnGhe)
-        {
-            if (btnGhe.BackColor == Color.DarkGoldenrod)
-            {
-                MessageBox.Show("GHE DA DUOC MUA");
-                return;
-            }
-            _ = btnGhe.BackColor == Color.White ? btnGhe.BackColor = Color.LightGreen : btnGhe.BackColor = Color.White;
         }
 
+        private void BtnTable_Click(object sender, EventArgs e)
+        {
+            Button btnTable = (Button)sender;
+            ChangeStatus(btnTable);
+        }
+        private void ChangeStatus(Button btnTable)
+        {
+            if (this.ActiveTable == 1 && btnTable.BackColor == Color.LightGreen)
+            {
+                this.ActiveTable = 0;
+                btnTable.BackColor = Color.White;
+                return;
+            }
+            if (this.ActiveTable == 1 && btnTable.BackColor != Color.LightGreen)
+            {
+                MessageBox.Show("Vui lòng hoàn thành Order món cho " + this.SelectedTable.Text);
+                return;
+            }
+            else if (this.ActiveTable < 1)
+            {
+               
+                if (btnTable.BackColor == Color.DarkGoldenrod)
+                {
+                    MessageBox.Show("BAN DA DUOC DAT");
+                    return;
+                }
+                
+                else
+                {
+                    _ = btnTable.BackColor == Color.White ? btnTable.BackColor = Color.LightGreen : btnTable.BackColor = Color.White;
+                    this.SelectedTable = btnTable;
+                    this.ActiveTable ++;
+                    return;
+                }
+            }
+        }
         private void BtnDatMua_Click(object sender, EventArgs e)
         {
-            //lay danh cac ghe dang chon
-            // - Cong don so tien
-            // - Tao hoa don
-            // - Luu Hoa don
-            // - Luu danh sach hoa don
             //MuaVe();
         }
 
@@ -116,6 +136,49 @@ namespace ManagementSale
             CoffeeContextDB context = new CoffeeContextDB();
             List<Food> listFood = context.Foods.ToList().Where(p => p.FoodCategory.name == cmbCategory.Text).ToList();
             cmbFoody(listFood);
+        }
+
+        //private void btnAddFood_Click(object sender, EventArgs e)
+        //{
+        //    using (var _contextDB = new CoffeeContextDB())
+        //    {
+        //        using (var _dbContext = new CoffeeContextDB())
+        //        {
+        //            int indexTable;
+        //            foreach (Button Table in flpTable.Controls.OfType<Button>())
+        //            {
+        //                Bill bill = new Bill();
+        //                bill.idTable = 1;// table
+        //                bill.DateCheckIn = DateTime.Now;
+        //                indexTable = int.Parse(Table.Text + 1);
+        //                if (_dbContext.TableFoods.Any(x => x.id == indexTable))
+        //                {
+        //                    bill.idTable = indexTable + 1;
+        //                    MessageBox.Show(indexTable.ToString());
+        //                }
+
+        //            }
+        //        }
+        //    }
+
+        //}
+
+        private void dgvTableDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void bindDgvBill(List<BillInfo> listBill)
+        {
+            dgvTableDetails.Rows.Clear();
+            foreach(var item in listBill)
+            {
+                int index = dgvTableDetails.Rows.Add();
+                dgvTableDetails.Rows[index].Cells[0].Value = this.No;
+                dgvTableDetails.Rows[index].Cells[1].Value = item.Food.name;
+                dgvTableDetails.Rows[index].Cells[2].Value = item.count;
+                dgvTableDetails.Rows[index].Cells[3].Value = item.Food.price;
+                this.No++;
+            }
         }
         //private void btnAddFood_Click(object sender, EventArgs e)
         //{

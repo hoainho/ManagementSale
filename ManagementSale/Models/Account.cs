@@ -16,7 +16,7 @@ namespace ManagementSale.Models
         }
 
         [Key]
-        [StringLength(50)]
+        [StringLength(100)]
         public string UserName { get; set; }
 
         [Required]
