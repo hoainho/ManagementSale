@@ -61,6 +61,11 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\BillDAO.cs" />
+    <Compile Include="DAO\BillInfoDAO.cs" />
+    <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\MenuDAO.cs" />
+    <Compile Include="DAO\TableDAO.cs" />
     <Compile Include="fAccountDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +109,7 @@
     <Compile Include="Models\CoffeeContextDB.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\FoodCategory.cs" />
+    <Compile Include="Models\List.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\TableFood.cs" />
     <Compile Include="Program.cs" />

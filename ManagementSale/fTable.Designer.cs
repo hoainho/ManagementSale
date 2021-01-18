@@ -34,14 +34,10 @@ namespace ManagementSale
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTable = new System.Windows.Forms.Label();
             this.dgvTableDetails = new System.Windows.Forms.DataGridView();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbTableChange = new System.Windows.Forms.ComboBox();
             this.nmDiscount = new System.Windows.Forms.NumericUpDown();
             this.btnSwitchTable = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -54,6 +50,10 @@ namespace ManagementSale
             this.cmbFood = new System.Windows.Forms.ComboBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableDetails)).BeginInit();
             this.panel3.SuspendLayout();
@@ -116,46 +116,11 @@ namespace ManagementSale
             this.dgvTableDetails.Size = new System.Drawing.Size(425, 425);
             this.dgvTableDetails.TabIndex = 0;
             // 
-            // colNo
-            // 
-            this.colNo.FillWeight = 106.9519F;
-            this.colNo.HeaderText = "STT";
-            this.colNo.MinimumWidth = 6;
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Width = 50;
-            // 
-            // colFoodName
-            // 
-            this.colFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFoodName.FillWeight = 97.68271F;
-            this.colFoodName.HeaderText = "Tên Món";
-            this.colFoodName.MinimumWidth = 6;
-            this.colFoodName.Name = "colFoodName";
-            this.colFoodName.ReadOnly = true;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "SL";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 50;
-            // 
-            // colPrice
-            // 
-            this.colPrice.FillWeight = 97.68271F;
-            this.colPrice.HeaderText = "Giá ";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.ReadOnly = true;
-            this.colPrice.Width = 60;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.txtTotalPrice);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cmbTableChange);
             this.panel3.Controls.Add(this.nmDiscount);
             this.panel3.Controls.Add(this.btnSwitchTable);
             this.panel3.Controls.Add(this.button2);
@@ -172,6 +137,7 @@ namespace ManagementSale
             this.txtTotalPrice.Name = "txtTotalPrice";
             this.txtTotalPrice.Size = new System.Drawing.Size(100, 22);
             this.txtTotalPrice.TabIndex = 10;
+            this.txtTotalPrice.TextChanged += new System.EventHandler(this.txtTotalPrice_TextChanged);
             // 
             // label2
             // 
@@ -181,13 +147,13 @@ namespace ManagementSale
             this.label2.Size = new System.Drawing.Size(0, 17);
             this.label2.TabIndex = 9;
             // 
-            // comboBox1
+            // cmbTableChange
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(8, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(95, 24);
-            this.comboBox1.TabIndex = 8;
+            this.cmbTableChange.FormattingEnabled = true;
+            this.cmbTableChange.Location = new System.Drawing.Point(8, 41);
+            this.cmbTableChange.Name = "cmbTableChange";
+            this.cmbTableChange.Size = new System.Drawing.Size(95, 24);
+            this.cmbTableChange.TabIndex = 8;
             // 
             // nmDiscount
             // 
@@ -215,6 +181,7 @@ namespace ManagementSale
             this.btnSwitchTable.TabIndex = 6;
             this.btnSwitchTable.Text = "Chuyển Bàn";
             this.btnSwitchTable.UseVisualStyleBackColor = true;
+            this.btnSwitchTable.Click += new System.EventHandler(this.btnSwitchTable_Click);
             // 
             // button2
             // 
@@ -233,6 +200,7 @@ namespace ManagementSale
             this.btnCheckOut.TabIndex = 6;
             this.btnCheckOut.Text = "Thanh Toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // panel2
             // 
@@ -317,6 +285,44 @@ namespace ManagementSale
             this.flpTable.Size = new System.Drawing.Size(725, 619);
             this.flpTable.TabIndex = 9;
             // 
+            // colNo
+            // 
+            this.colNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colNo.FillWeight = 106.9519F;
+            this.colNo.HeaderText = "Tên";
+            this.colNo.MinimumWidth = 6;
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Width = 62;
+            // 
+            // colFoodName
+            // 
+            this.colFoodName.FillWeight = 97.68271F;
+            this.colFoodName.HeaderText = "SL";
+            this.colFoodName.MinimumWidth = 6;
+            this.colFoodName.Name = "colFoodName";
+            this.colFoodName.ReadOnly = true;
+            this.colFoodName.Width = 54;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colQuantity.HeaderText = "Giá";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.Width = 59;
+            // 
+            // colPrice
+            // 
+            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colPrice.FillWeight = 97.68271F;
+            this.colPrice.HeaderText = "Tổng cộng";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 105;
+            // 
             // fTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -348,7 +354,7 @@ namespace ManagementSale
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbTableChange;
         private System.Windows.Forms.NumericUpDown nmDiscount;
         private System.Windows.Forms.Button btnSwitchTable;
         private System.Windows.Forms.Button button2;
@@ -364,11 +370,11 @@ namespace ManagementSale
         private System.Windows.Forms.DataGridView dgvTableDetails;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label txtTable;
+        private System.Windows.Forms.Label lblTableName;
+        private System.Windows.Forms.TextBox txtTotalPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFoodName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
-        private System.Windows.Forms.Label lblTableName;
-        private System.Windows.Forms.TextBox txtTotalPrice;
     }
 }
