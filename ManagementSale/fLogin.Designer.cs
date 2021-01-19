@@ -39,6 +39,7 @@ namespace ManagementSale
             this.btnSignUp = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.lblForgotPass = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -69,6 +70,7 @@ namespace ManagementSale
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(246, 22);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // txtUserName
@@ -134,6 +136,14 @@ namespace ManagementSale
             this.lblForgotPass.Text = "Quên Mật Khẩu ?";
             this.lblForgotPass.VisitedLinkColor = System.Drawing.Color.OrangeRed;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(119, 147);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.TabIndex = 6;
+            // 
             // fLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -141,6 +151,7 @@ namespace ManagementSale
             this.BackgroundImage = global::ManagementSale.Properties.Resources.bgLogin;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1165, 653);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblForgotPass);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.btnSignUp);
@@ -153,7 +164,7 @@ namespace ManagementSale
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fLogin";
-            this.Text = "fLogin";
+            this.Text = "  7 0 7 - COFFEE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -171,5 +182,6 @@ namespace ManagementSale
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.LinkLabel lblForgotPass;
+        private System.Windows.Forms.Label label1;
     }
 }

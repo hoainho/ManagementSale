@@ -4,6 +4,7 @@ namespace ManagementSale.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data;
     using System.Data.Entity.Spatial;
 
     [Table("Account")]
@@ -13,6 +14,20 @@ namespace ManagementSale.Models
         public Account()
         {
             Bills = new HashSet<Bill>();
+        }
+        public Account(string UserName,string DisplayName,string Password, int Type)
+        {
+            this.UserName = UserName;
+            this.DisplayName = DisplayName;
+            this.PassWord = PassWord;
+            this.Type = Type;
+        }
+        public Account(DataRow row)
+        {
+            this.UserName = row["UserName"].ToString();
+            this.DisplayName = row["DisplayName"].ToString();
+            this.PassWord = row["PassWord"].ToString();
+            this.Type = (int)row["Type"];
         }
 
         [Key]

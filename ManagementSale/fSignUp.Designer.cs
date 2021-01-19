@@ -51,24 +51,29 @@ namespace ManagementSale
             // txtPasswordConfirm
             // 
             this.txtPasswordConfirm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPasswordConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPasswordConfirm.Location = new System.Drawing.Point(479, 453);
             this.txtPasswordConfirm.Name = "txtPasswordConfirm";
             this.txtPasswordConfirm.Size = new System.Drawing.Size(246, 22);
             this.txtPasswordConfirm.TabIndex = 5;
+            this.txtPasswordConfirm.UseSystemPasswordChar = true;
             this.txtPasswordConfirm.Validating += new System.ComponentModel.CancelEventHandler(this.txtDisplayName_Validating);
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(479, 404);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(246, 22);
             this.txtPassword.TabIndex = 4;
+            this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtDisplayName_Validating);
             // 
             // txtUserName
             // 
             this.txtUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(479, 307);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(246, 22);
@@ -78,6 +83,7 @@ namespace ManagementSale
             // txtDisplayName
             // 
             this.txtDisplayName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtDisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDisplayName.Location = new System.Drawing.Point(479, 261);
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(246, 22);
@@ -195,6 +201,7 @@ namespace ManagementSale
             this.txtAccountType.Size = new System.Drawing.Size(246, 22);
             this.txtAccountType.TabIndex = 2;
             this.txtAccountType.Text = "User";
+            this.txtAccountType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAccountType.Validating += new System.ComponentModel.CancelEventHandler(this.txtDisplayName_Validating);
             // 
             // fSignUp
@@ -216,6 +223,7 @@ namespace ManagementSale
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "fSignUp";
             this.Text = "fSignUp";
             this.Validating += new System.ComponentModel.CancelEventHandler(this.txtDisplayName_Validating);
