@@ -29,7 +29,7 @@ namespace ManagementSale
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -110,15 +110,10 @@ namespace ManagementSale
             this.btnSearchFood = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvFood = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnAddFood = new System.Windows.Forms.Button();
             this.btnEditFood = new System.Windows.Forms.Button();
             this.btnDeleteFood = new System.Windows.Forms.Button();
-            this.btnViewFood = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -144,9 +139,16 @@ namespace ManagementSale
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnOutput = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.tpIncome = new System.Windows.Forms.TabControl();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblTypeFood = new System.Windows.Forms.Label();
+            this.cmbFilerCateFood = new System.Windows.Forms.ComboBox();
             this.tpAccount.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
@@ -174,6 +176,7 @@ namespace ManagementSale
             ((System.ComponentModel.ISupportInitialize)(this.dgvInCome)).BeginInit();
             this.panel1.SuspendLayout();
             this.tpIncome.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tpAccount
@@ -559,8 +562,8 @@ namespace ManagementSale
             // 
             // colTableID
             // 
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTableID.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colTableID.DefaultCellStyle = dataGridViewCellStyle2;
             this.colTableID.HeaderText = "Mã Bàn";
             this.colTableID.MinimumWidth = 6;
             this.colTableID.Name = "colTableID";
@@ -897,9 +900,9 @@ namespace ManagementSale
             // 
             // tpFoody
             // 
+            this.tpFoody.Controls.Add(this.panel8);
             this.tpFoody.Controls.Add(this.panel4);
             this.tpFoody.Controls.Add(this.panel5);
-            this.tpFoody.Controls.Add(this.panel3);
             this.tpFoody.Controls.Add(this.panel6);
             this.tpFoody.Location = new System.Drawing.Point(4, 25);
             this.tpFoody.Name = "tpFoody";
@@ -914,7 +917,7 @@ namespace ManagementSale
             this.panel4.Controls.Add(this.lblFoodName);
             this.panel4.Controls.Add(this.txtSearchFood);
             this.panel4.Controls.Add(this.btnSearchFood);
-            this.panel4.Location = new System.Drawing.Point(449, 6);
+            this.panel4.Location = new System.Drawing.Point(446, 7);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(694, 66);
             this.panel4.TabIndex = 0;
@@ -944,6 +947,7 @@ namespace ManagementSale
             this.btnSearchFood.TabIndex = 7;
             this.btnSearchFood.Text = "Tìm Kiếm";
             this.btnSearchFood.UseVisualStyleBackColor = true;
+            this.btnSearchFood.Click += new System.EventHandler(this.btnSearchFood_Click);
             // 
             // panel5
             // 
@@ -971,52 +975,19 @@ namespace ManagementSale
             this.dgvFood.Size = new System.Drawing.Size(617, 527);
             this.dgvFood.TabIndex = 0;
             // 
-            // colID
-            // 
-            this.colID.HeaderText = "STT";
-            this.colID.MinimumWidth = 6;
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 50;
-            // 
-            // ColFoodName
-            // 
-            this.ColFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColFoodName.HeaderText = "Tên Món";
-            this.ColFoodName.MinimumWidth = 6;
-            this.ColFoodName.Name = "ColFoodName";
-            this.ColFoodName.ReadOnly = true;
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "Loại";
-            this.colType.MinimumWidth = 6;
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
-            this.colType.Width = 125;
-            // 
-            // colPrice
-            // 
-            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPrice.HeaderText = "Giá";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.ReadOnly = true;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnAddFood);
             this.panel3.Controls.Add(this.btnEditFood);
             this.panel3.Controls.Add(this.btnDeleteFood);
-            this.panel3.Controls.Add(this.btnViewFood);
-            this.panel3.Location = new System.Drawing.Point(6, 6);
+            this.panel3.Location = new System.Drawing.Point(34, 415);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(437, 66);
             this.panel3.TabIndex = 0;
             // 
             // btnAddFood
             // 
-            this.btnAddFood.Location = new System.Drawing.Point(315, 5);
+            this.btnAddFood.Location = new System.Drawing.Point(322, 3);
             this.btnAddFood.Name = "btnAddFood";
             this.btnAddFood.Size = new System.Drawing.Size(88, 58);
             this.btnAddFood.TabIndex = 7;
@@ -1025,7 +996,7 @@ namespace ManagementSale
             // 
             // btnEditFood
             // 
-            this.btnEditFood.Location = new System.Drawing.Point(221, 5);
+            this.btnEditFood.Location = new System.Drawing.Point(178, 3);
             this.btnEditFood.Name = "btnEditFood";
             this.btnEditFood.Size = new System.Drawing.Size(88, 58);
             this.btnEditFood.TabIndex = 7;
@@ -1034,27 +1005,19 @@ namespace ManagementSale
             // 
             // btnDeleteFood
             // 
-            this.btnDeleteFood.Location = new System.Drawing.Point(127, 5);
+            this.btnDeleteFood.Location = new System.Drawing.Point(30, 3);
             this.btnDeleteFood.Name = "btnDeleteFood";
             this.btnDeleteFood.Size = new System.Drawing.Size(88, 58);
             this.btnDeleteFood.TabIndex = 7;
             this.btnDeleteFood.Text = "Xóa";
             this.btnDeleteFood.UseVisualStyleBackColor = true;
             // 
-            // btnViewFood
-            // 
-            this.btnViewFood.Location = new System.Drawing.Point(33, 5);
-            this.btnViewFood.Name = "btnViewFood";
-            this.btnViewFood.Size = new System.Drawing.Size(88, 58);
-            this.btnViewFood.TabIndex = 7;
-            this.btnViewFood.Text = "Xem";
-            this.btnViewFood.UseVisualStyleBackColor = true;
-            // 
             // panel6
             // 
             this.panel6.BackgroundImage = global::ManagementSale.Properties.Resources.bg3;
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.label6);
+            this.panel6.Controls.Add(this.panel3);
             this.panel6.Controls.Add(this.textBox4);
             this.panel6.Controls.Add(this.textBox3);
             this.panel6.Controls.Add(this.textBox2);
@@ -1255,8 +1218,8 @@ namespace ManagementSale
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnOutput);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dtpEnd);
+            this.panel1.Controls.Add(this.dtpStart);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1137, 67);
@@ -1279,6 +1242,7 @@ namespace ManagementSale
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "In Thống Kê";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnOutput
             // 
@@ -1297,20 +1261,23 @@ namespace ManagementSale
             this.btnView.TabIndex = 1;
             this.btnView.Text = "Xem Thống Kê";
             this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
-            // dateTimePicker2
+            // dtpEnd
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(376, 20);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(235, 22);
-            this.dateTimePicker2.TabIndex = 0;
+            this.dtpEnd.Location = new System.Drawing.Point(376, 20);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(235, 22);
+            this.dtpEnd.TabIndex = 0;
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
-            // dateTimePicker1
+            // dtpStart
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(21, 20);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(235, 22);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dtpStart.Location = new System.Drawing.Point(21, 20);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(235, 22);
+            this.dtpStart.TabIndex = 0;
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // tpIncome
             // 
@@ -1325,6 +1292,65 @@ namespace ManagementSale
             this.tpIncome.Size = new System.Drawing.Size(1183, 700);
             this.tpIncome.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tpIncome.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 6;
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 50;
+            // 
+            // ColFoodName
+            // 
+            this.ColFoodName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColFoodName.HeaderText = "Tên Món";
+            this.ColFoodName.MinimumWidth = 6;
+            this.ColFoodName.Name = "ColFoodName";
+            this.ColFoodName.ReadOnly = true;
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Loại";
+            this.colType.MinimumWidth = 6;
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 125;
+            // 
+            // colPrice
+            // 
+            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrice.HeaderText = "Giá";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.cmbFilerCateFood);
+            this.panel8.Controls.Add(this.lblTypeFood);
+            this.panel8.Location = new System.Drawing.Point(9, 7);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(431, 66);
+            this.panel8.TabIndex = 0;
+            // 
+            // lblTypeFood
+            // 
+            this.lblTypeFood.AutoSize = true;
+            this.lblTypeFood.Location = new System.Drawing.Point(25, 25);
+            this.lblTypeFood.Name = "lblTypeFood";
+            this.lblTypeFood.Size = new System.Drawing.Size(43, 17);
+            this.lblTypeFood.TabIndex = 1;
+            this.lblTypeFood.Text = "Loại :";
+            // 
+            // cmbFilerCateFood
+            // 
+            this.cmbFilerCateFood.FormattingEnabled = true;
+            this.cmbFilerCateFood.Location = new System.Drawing.Point(75, 24);
+            this.cmbFilerCateFood.Name = "cmbFilerCateFood";
+            this.cmbFilerCateFood.Size = new System.Drawing.Size(330, 24);
+            this.cmbFilerCateFood.TabIndex = 2;
+            this.cmbFilerCateFood.TextChanged += new System.EventHandler(this.cmbFilerCateFood_TextChanged);
             // 
             // Admin
             // 
@@ -1371,6 +1397,8 @@ namespace ManagementSale
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tpIncome.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1386,8 +1414,8 @@ namespace ManagementSale
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnOutput;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.TabControl tpIncome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPrint;
@@ -1402,7 +1430,6 @@ namespace ManagementSale
         private System.Windows.Forms.Button btnAddFood;
         private System.Windows.Forms.Button btnEditFood;
         private System.Windows.Forms.Button btnDeleteFood;
-        private System.Windows.Forms.Button btnViewFood;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox3;
@@ -1481,10 +1508,6 @@ namespace ManagementSale
         private System.Windows.Forms.DataGridViewTextBoxColumn colTableStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCaterogyID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCategoryName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFoodName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
         private System.Windows.Forms.DataGridView dgvInCome;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTableIdIncome;
@@ -1493,5 +1516,12 @@ namespace ManagementSale
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFoodName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.ComboBox cmbFilerCateFood;
+        private System.Windows.Forms.Label lblTypeFood;
     }
 }

@@ -204,11 +204,6 @@ namespace ManagementSale
             this.nmDiscount.Size = new System.Drawing.Size(95, 22);
             this.nmDiscount.TabIndex = 7;
             this.nmDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nmDiscount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // btnSwitchTable
             // 

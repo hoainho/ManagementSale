@@ -16,48 +16,132 @@ namespace ManagementSale
         public Admin()
         {
             InitializeComponent();
-
         }
+
         private void Admin_Load(object sender, EventArgs e)
         {
-                //Format Date
-                //Init SQL DB
-                CoffeeContextDB context = new CoffeeContextDB();
-                List<Account> listAcc = context.Accounts.ToList();
-                BindGrid_Account(listAcc);
-                BindGrid_InCome();
-            
+            CoffeeContextDB _contextDB = new CoffeeContextDB();
+            List<Food> listFood = _contextDB.Foods.ToList();
+            ShowBill();
+            ShowCmbCateFood();
+            ShowFood(listFood);
         }
-        private void BindGrid_Account(List<Account> listAcc)
+        public void ShowBill()
         {
-            dgvAccount.Rows.Clear();
-            foreach (var item in listAcc)
+            using ( var _contextDB = new CoffeeContextDB())
             {
-                int index = dgvAccount.Rows.Add();
-                dgvAccount.Rows[index].Cells[0].Value = item.DisplayName;
-                dgvAccount.Rows[index].Cells[1].Value = item.UserName;
-                dgvAccount.Rows[index].Cells[2].Value = item.PassWord;
-                dgvAccount.Rows[index].Cells[3].Value = item.Type;
-            }
-        }
-
-        private void BindGrid_InCome()
-        {
-            using (CoffeeContextDB _contextDB = new CoffeeContextDB())
-            {
-                List<BillInfo> listBill = _contextDB.BillInfoes.ToList();
+                List<Bill> listBill = _contextDB.Bills.ToList();
                 dgvInCome.Rows.Clear();
-                foreach (var item in listBill)
+                foreach (Bill item in listBill)
                 {
+                    string status = item.status == 1 ? "Đã Thanh Toán" : "Chưa Thanh Toán";
                     int index = dgvInCome.Rows.Add();
-                    dgvInCome.Rows[index].Cells[0].Value = item.Bill.TableFood.name;
-                    dgvInCome.Rows[index].Cells[1].Value = item.Bill.DateCheckIn;
-                    dgvInCome.Rows[index].Cells[2].Value = item.Bill.DateCheckOut;
-                    dgvInCome.Rows[index].Cells[3].Value = item.Bill.discount;
-                    dgvInCome.Rows[index].Cells[4].Value = item.count * item.Food.price;
+                    dgvInCome.Rows[index].Cells[0].Value = item.TableFood.name;
+                    dgvInCome.Rows[index].Cells[1].Value = item.DateCheckIn;
+                    dgvInCome.Rows[index].Cells[2].Value = item.DateCheckOut;
+                    dgvInCome.Rows[index].Cells[3].Value = status;
+                    dgvInCome.Rows[index].Cells[4].Value = item.discount;
+                    dgvInCome.Rows[index].Cells[5].Value = item.totalPrice / 100 * (100 - item.discount );
                 }
             }
+            
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            using (var _contextDB = new CoffeeContextDB())
+            {
+                List<Bill> listBill = _contextDB.Bills.Where
+                    (
+                    x => x.DateCheckIn >= dtpStart.Value && 
+                    x.DateCheckIn <= dtpEnd.Value && x.status ==1
+                    ).ToList();
+                dgvInCome.Rows.Clear();
+                foreach (Bill item in listBill)
+                {
+                    string status = item.status == 1 ? "Đã Thanh Toán" : "Chưa Thanh Toán";
+                    int index = dgvInCome.Rows.Add();
+                    dgvInCome.Rows[index].Cells[0].Value = item.TableFood.name;
+                    dgvInCome.Rows[index].Cells[1].Value = item.DateCheckIn;
+                    dgvInCome.Rows[index].Cells[2].Value = item.DateCheckOut;
+                    dgvInCome.Rows[index].Cells[3].Value = status;
+                    dgvInCome.Rows[index].Cells[4].Value = item.discount;
+                    dgvInCome.Rows[index].Cells[5].Value = item.totalPrice / 100 * (100 - item.discount);
+                }
+            }
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            if(dtpStart.Value > dtpEnd.Value)
+            {
+                MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc","Cảnh Báo",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpStart.Value > dtpEnd.Value)
+            {
+                MessageBox.Show("Ngày kết thúc phải nhỏ hơn ngày bắt đầu", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Vui Lòng Kết Nối Với Máy In (Error 404)","Nhắc Nhở",MessageBoxButtons.RetryCancel,MessageBoxIcon.Warning);
+        }
+
+        public void ShowCmbCateFood()
+        {
+            using (var _contextDB = new CoffeeContextDB())
+            {
+                List<FoodCategory> ListCate = _contextDB.FoodCategories.ToList();
+                cmbFilerCateFood.DataSource = ListCate;
+                cmbFilerCateFood.DisplayMember = "name";
+                cmbFilerCateFood.ValueMember = "id"; 
+            }
+        }
+
+        public void ShowFood(List<Food> listFood)
+        {
+             dgvFood.Rows.Clear();
+                foreach (Food item in listFood)
+                {
+                    int index = dgvFood.Rows.Add();
+                    dgvFood.Rows[index].Cells[0].Value = item.id;
+                    dgvFood.Rows[index].Cells[1].Value = item.name;
+                    dgvFood.Rows[index].Cells[2].Value = item.FoodCategory.name;
+                    dgvFood.Rows[index].Cells[3].Value = item.price;
+                }
+            
 
         }
+        private void btnSearchFood_Click(object sender, EventArgs e)
+        {
+            using (var _contextDB = new CoffeeContextDB())
+            {
+                List<Food> listFood = _contextDB.Foods.Where(x => x.name.StartsWith(txtSearchFood.Text)).ToList();
+                dgvFood.Rows.Clear();
+                foreach (Food item in listFood)
+                {
+                    int index = dgvFood.Rows.Add();
+                    dgvFood.Rows[index].Cells[0].Value = item.id;
+                    dgvFood.Rows[index].Cells[1].Value = item.name;
+                    dgvFood.Rows[index].Cells[2].Value = item.FoodCategory.name;
+                    dgvFood.Rows[index].Cells[3].Value = item.price;
+                }
+            }
+        }
+
+        private void cmbFilerCateFood_TextChanged(object sender, EventArgs e)
+        {
+            using (var _contextDB = new CoffeeContextDB())
+            {
+                List<Food> listFood = _contextDB.Foods.Where(p => p.FoodCategory.name == cmbFilerCateFood.Text).ToList();
+                ShowFood(listFood);
+            }
+        }
     }
+
 }
