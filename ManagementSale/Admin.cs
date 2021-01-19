@@ -364,8 +364,7 @@ namespace ManagementSale
             using (var _contextDB = new CoffeeContextDB())
             {
                 TableFood item = new TableFood();
-                item.id = int.Parse(txtTableFood.Text);
-                item.name = txtTableFood.Text;
+                item.name = txtTableName.Text;
                 item.status = txtTableStatus.Text;
                 _contextDB.TableFoods.Add(item);
                 _contextDB.SaveChanges();
@@ -544,7 +543,7 @@ namespace ManagementSale
                 ShowAccount(_contextDB.Accounts.ToList());
             }
         }
-
+        
     }
 
 }

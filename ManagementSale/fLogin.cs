@@ -21,9 +21,12 @@ namespace ManagementSale
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            fSignUp signUp = new fSignUp();
-            this.Hide();
-            signUp.Show();
+            fSignUp f = new fSignUp();
+            fHome home = new fHome();
+            
+            home.Hide();
+            f.ShowDialog();
+            
         }
 
         private void btnSignIn_Click(object sender, EventArgs e)
