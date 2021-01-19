@@ -21,13 +21,15 @@ namespace ManagementSale
 
         private void fHome_Load(object sender, EventArgs e)
         {
-            OpenLoginForm();
+            toolVisible(false);
             OpenTableForm();
+            OpenLoginForm();
+
         }
-        public void OpenLoginForm()
+        
+    public void OpenLoginForm()
         {
             Form frmChild = this.MdiChildren.OfType<fLogin>().FirstOrDefault();
-
             if (frmChild == null)
             {
                 fLogin frm = new fLogin();
@@ -36,34 +38,61 @@ namespace ManagementSale
                 frm.FormBorderStyle = FormBorderStyle.None;
                 frm.Dock = DockStyle.Fill;
                 frm.accountAccuracy += Frm_accountAccuracy;
+                
                 frm.Show();
                 return;
             }
             frmChild.Activate();
+            
         }
-
         private void Frm_accountAccuracy(Models.Account acc)
         {
             this.account = acc;
-            txtNameInfo.Text = string.Format(acc.DisplayName);
+            mnsInfomation.Text = string.Format(acc.DisplayName);
             toolVisible(false);
-
-
         }
         private void toolVisible(bool status)
         {
-            if(account.Type == 1)
+            if (account == null)
             {
+                mnsHome.Visible = status;
                 mnsManager.Visible = status;
+                mnsInfomation.Visible = status;
+                mnsHelp.Visible = status;
+            }
+            else
+            {
+                if (account.Type == 1)
+                {
+                    mnsHome.Visible = !status;
+                    mnsManager.Visible = status;
+                    mnsInfomation.Visible = !status;
+                    mnsHelp.Visible = !status;
+                }
+                else
+                {
+                    mnsManager.Visible = !status;
+                    mnsHome.Visible = !status;
+                    mnsInfomation.Visible = !status;
+                    mnsHelp.Visible = !status;
+                }
+            }
+           
+        }
+        public void showTable()
+        {
+            if (account != null)
+            {
+                OpenTableForm();
             }
         }
         public void OpenTableForm()
         {
-            Form frmChild = this.MdiChildren.OfType<fLogin>().FirstOrDefault();
+            Form frmChild = this.MdiChildren.OfType<fTable>().FirstOrDefault();
 
             if (frmChild == null)
             {
-                fLogin frm = new fLogin();
+                fTable frm = new fTable();
                 frm.MdiParent = this;
                 frm.StartPosition = FormStartPosition.CenterScreen;
                 frm.FormBorderStyle = FormBorderStyle.None;
@@ -111,9 +140,12 @@ namespace ManagementSale
             }
             frmChild.Activate();
         }
-        public void ControlVisible()
+        public void ControlVisible(bool status)
         {
-
+            mnsHome.Visible = status;
+            mnsManager.Visible = status;
+            mnsInfomation.Visible = status;
+            mnsHelp.Visible = status;
         }
 
         private void hỗTrợToolStripMenuItem_Click(object sender, EventArgs e)
@@ -134,6 +166,11 @@ namespace ManagementSale
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OpenTableForm();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

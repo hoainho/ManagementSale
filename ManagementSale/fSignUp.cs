@@ -61,9 +61,7 @@ namespace ManagementSale
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            fLogin flogin = new fLogin();
             this.Close();
-            flogin.Show();
         }
     }
 }

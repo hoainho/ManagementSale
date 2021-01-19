@@ -64,6 +64,7 @@ namespace ManagementSale
             // 
             // panel4
             // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel4.Controls.Add(this.lblTableName);
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Controls.Add(this.txtTable);
@@ -156,6 +157,7 @@ namespace ManagementSale
             // 
             // panel3
             // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel3.Controls.Add(this.txtTotalPrice);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.cmbTableChange);
@@ -163,7 +165,7 @@ namespace ManagementSale
             this.panel3.Controls.Add(this.btnSwitchTable);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.btnCheckOut);
-            this.panel3.Location = new System.Drawing.Point(725, 544);
+            this.panel3.Location = new System.Drawing.Point(722, 545);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(431, 76);
             this.panel3.TabIndex = 6;
@@ -236,13 +238,14 @@ namespace ManagementSale
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.lblCategory);
             this.panel2.Controls.Add(this.btnAddFood);
             this.panel2.Controls.Add(this.nmFoodCount);
             this.panel2.Controls.Add(this.cmbFood);
             this.panel2.Controls.Add(this.cmbCategory);
-            this.panel2.Location = new System.Drawing.Point(725, 1);
+            this.panel2.Location = new System.Drawing.Point(722, 2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(431, 73);
             this.panel2.TabIndex = 7;
@@ -311,8 +314,9 @@ namespace ManagementSale
             // 
             // flpTable
             // 
+            this.flpTable.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flpTable.AutoScroll = true;
-            this.flpTable.Location = new System.Drawing.Point(0, 1);
+            this.flpTable.Location = new System.Drawing.Point(-3, 2);
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(725, 619);
             this.flpTable.TabIndex = 9;
