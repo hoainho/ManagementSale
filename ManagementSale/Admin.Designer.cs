@@ -29,7 +29,7 @@ namespace ManagementSale
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -133,6 +133,12 @@ namespace ManagementSale
             this.tpDoanhThu = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvInCome = new System.Windows.Forms.DataGridView();
+            this.colTableIdIncome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCheckOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -141,12 +147,6 @@ namespace ManagementSale
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tpIncome = new System.Windows.Forms.TabControl();
-            this.colTableIdIncome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCheckOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpAccount.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
@@ -199,7 +199,6 @@ namespace ManagementSale
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(69, 68);
             this.panel7.TabIndex = 8;
-            this.panel7.Click += new System.EventHandler(this.panel7_Click);
             // 
             // panel18
             // 
@@ -560,8 +559,8 @@ namespace ManagementSale
             // 
             // colTableID
             // 
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTableID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colTableID.DefaultCellStyle = dataGridViewCellStyle1;
             this.colTableID.HeaderText = "Mã Bàn";
             this.colTableID.MinimumWidth = 6;
             this.colTableID.Name = "colTableID";
@@ -1202,6 +1201,54 @@ namespace ManagementSale
             this.dgvInCome.Size = new System.Drawing.Size(1131, 529);
             this.dgvInCome.TabIndex = 0;
             // 
+            // colTableIdIncome
+            // 
+            this.colTableIdIncome.HeaderText = "Số Bàn";
+            this.colTableIdIncome.MinimumWidth = 6;
+            this.colTableIdIncome.Name = "colTableIdIncome";
+            this.colTableIdIncome.ReadOnly = true;
+            this.colTableIdIncome.Width = 125;
+            // 
+            // colCheckIn
+            // 
+            this.colCheckIn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCheckIn.HeaderText = "Giờ Vào";
+            this.colCheckIn.MinimumWidth = 6;
+            this.colCheckIn.Name = "colCheckIn";
+            this.colCheckIn.ReadOnly = true;
+            // 
+            // colCheckOut
+            // 
+            this.colCheckOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCheckOut.HeaderText = "Giờ Ra";
+            this.colCheckOut.MinimumWidth = 6;
+            this.colCheckOut.Name = "colCheckOut";
+            this.colCheckOut.ReadOnly = true;
+            // 
+            // colStatus
+            // 
+            this.colStatus.HeaderText = "Trạng Thái";
+            this.colStatus.MinimumWidth = 6;
+            this.colStatus.Name = "colStatus";
+            this.colStatus.ReadOnly = true;
+            this.colStatus.Width = 125;
+            // 
+            // colDiscount
+            // 
+            this.colDiscount.HeaderText = "Giảm Giá";
+            this.colDiscount.MinimumWidth = 6;
+            this.colDiscount.Name = "colDiscount";
+            this.colDiscount.ReadOnly = true;
+            this.colDiscount.Width = 125;
+            // 
+            // colTotalPrice
+            // 
+            this.colTotalPrice.HeaderText = "Tổng Cộng";
+            this.colTotalPrice.MinimumWidth = 6;
+            this.colTotalPrice.Name = "colTotalPrice";
+            this.colTotalPrice.ReadOnly = true;
+            this.colTotalPrice.Width = 125;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
@@ -1250,7 +1297,6 @@ namespace ManagementSale
             this.btnView.TabIndex = 1;
             this.btnView.Text = "Xem Thống Kê";
             this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click)
             // 
             // dateTimePicker2
             // 
@@ -1279,54 +1325,6 @@ namespace ManagementSale
             this.tpIncome.Size = new System.Drawing.Size(1183, 700);
             this.tpIncome.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tpIncome.TabIndex = 0;
-            // 
-            // colTableIdIncome
-            // 
-            this.colTableIdIncome.HeaderText = "Số Bàn";
-            this.colTableIdIncome.MinimumWidth = 6;
-            this.colTableIdIncome.Name = "colTableIdIncome";
-            this.colTableIdIncome.ReadOnly = true;
-            this.colTableIdIncome.Width = 125;
-            // 
-            // colCheckIn
-            // 
-            this.colCheckIn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCheckIn.HeaderText = "Giờ Vào";
-            this.colCheckIn.MinimumWidth = 6;
-            this.colCheckIn.Name = "colCheckIn";
-            this.colCheckIn.ReadOnly = true;
-            // 
-            // colCheckOut
-            // 
-            this.colCheckOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCheckOut.HeaderText = "Giờ Ra";
-            this.colCheckOut.MinimumWidth = 6;
-            this.colCheckOut.Name = "colCheckOut";
-            this.colCheckOut.ReadOnly = true;
-            // 
-            // colStatus
-            // 
-            this.colStatus.HeaderText = "Trạng Thái";
-            this.colStatus.MinimumWidth = 6;
-            this.colStatus.Name = "colStatus";
-            this.colStatus.ReadOnly = true;
-            this.colStatus.Width = 125;
-            // 
-            // colDiscount
-            // 
-            this.colDiscount.HeaderText = "Giảm Giá";
-            this.colDiscount.MinimumWidth = 6;
-            this.colDiscount.Name = "colDiscount";
-            this.colDiscount.ReadOnly = true;
-            this.colDiscount.Width = 125;
-            // 
-            // colTotalPrice
-            // 
-            this.colTotalPrice.HeaderText = "Tổng Cộng";
-            this.colTotalPrice.MinimumWidth = 6;
-            this.colTotalPrice.Name = "colTotalPrice";
-            this.colTotalPrice.ReadOnly = true;
-            this.colTotalPrice.Width = 125;
             // 
             // Admin
             // 
