@@ -24,7 +24,7 @@ namespace ManagementSale.DAO
         {
             List<List> listMenu = new List<List>();
 
-            string query = "SELECT food.name , BillInfo.count , food.price, food.price * BillInfo.count As totalprice from BillInfo,Food, Bill WHERE bill.id = BillInfo.idBill AND food.id = BillInfo.idFood AND idTable =" + id ;
+            string query = "SELECT  food.name , BillInfo.count , food.price, food.price * BillInfo.count As totalprice from BillInfo, Food, Bill, TableFood WHERE  bill.status = 0 AND bill.id = BillInfo.idBill AND food.id = BillInfo.idFood AND TableFood.status = N'Có Khách' AND TableFood.id = " + id +" AND idTable =" + id ;
 
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
 

@@ -26,12 +26,12 @@ namespace ManagementSale
                 //Init SQL DB
                 CoffeeContextDB context = new CoffeeContextDB();
                 List<Account> listAcc = context.Accounts.ToList();
-                List<Bill> listInCome = context.Bills.ToList();
+                List<Bill> listBill = context.Bills.ToList();
                 List<Food> listFood = context.Foods.ToList();
                 List<FoodCategory> listCategory = context.FoodCategories.ToList();
                 List<TableFood> listTable = context.TableFoods.ToList();
                 BindGrid_Account(listAcc);
-                BindGrid_InCome(listInCome);
+                BindGrid_InCome();
                 BindGrid_Food(listFood);
                 BindGrid_Category(listCategory);
                 BindGrid_TableFood(listTable);
@@ -54,20 +54,29 @@ namespace ManagementSale
             }
         }
 
-        private void BindGrid_InCome(List<Bill> listInCome)
+        private void BindGrid_InCome()
         {
-            dgvInCome.Rows.Clear();
-            foreach (var item in listInCome)
+            using (CoffeeContextDB _contextDB = new CoffeeContextDB())
+            { 
+                List<BillInfo> listBill = _contextDB.BillInfoes.ToList();
+                dgvInCome.Rows.Clear();
+                double total = 0;
+                foreach (var item in listBill)
                 {
                     int index = dgvInCome.Rows.Add();
-                    dgvInCome.Rows[index].Cells[0].Value = item.TableFood.name;
-                    dgvInCome.Rows[index].Cells[1].Value = item.DateCheckIn;
-                    dgvInCome.Rows[index].Cells[2].Value = item.DateCheckOut;
-                    dgvInCome.Rows[index].Cells[3].Value = item.TableFood.status;
-                    dgvInCome.Rows[index].Cells[4].Value = item.totalPrice;
-            }
+                    dgvInCome.Rows[index].Cells[0].Value = item.Bill.TableFood.name;
+                    dgvInCome.Rows[index].Cells[1].Value = item.Bill.DateCheckIn;
+                    dgvInCome.Rows[index].Cells[2].Value = item.Bill.DateCheckOut;
+                    dgvInCome.Rows[index].Cells[3].Value = item.Bill.discount;
+                    dgvInCome.Rows[index].Cells[4].Value = item.count * item.Food.price;
+                }
+            {
+
+             
+            
+
         }
-        private void BindGrid_Food(List<Food> listFood)
+        void BindGrid_Food(List<Food> listFood)
         {
             dgvFood.Rows.Clear();
             foreach (var item in listFood)
@@ -79,7 +88,7 @@ namespace ManagementSale
                 dgvFood.Rows[index].Cells[3].Value = item.price;
             }
         }
-        private void BindGrid_Category(List<FoodCategory> listCategory)
+        void BindGrid_Category(List<FoodCategory> listCategory)
         {
             dgvFoodCategory.Rows.Clear();
             foreach (var item in listCategory)
@@ -89,7 +98,7 @@ namespace ManagementSale
                 dgvFoodCategory.Rows[index].Cells[1].Value = item.name;
             }
         }
-        private void BindGrid_TableFood(List<TableFood> listTable)
+       void BindGrid_TableFood(List<TableFood> listTable)
         {
             dgvTable.Rows.Clear();
             foreach (var item in listTable)
@@ -100,12 +109,36 @@ namespace ManagementSale
                 dgvTable.Rows[index].Cells[2].Value = item.status;
             }
         }
-        private void panel7_Click(object sender, EventArgs e)
+        void panel7_Click(object sender, EventArgs e)
         {
 
             fHome home = new fHome();
             this.Hide();
             home.Show();
+        }
+
+        void btnView_Click(object sender, EventArgs e)
+        {
+                using (CoffeeContextDB _contextDB = coffeeContextDB)
+                {
+                DateTime a = DateTime.Parse(colCheckIn.ToString());
+                DateTime b = DateTime.Parse(colCheckOut.ToString());
+                List<BillInfo> listBill = _contextDB.BillInfoes.Where(
+                x => x.Bill.DateCheckIn == a &&
+                x.Bill.DateCheckOut == b && x.Bill.status == 1
+                ).ToList();
+                dgvInCome.Rows.Clear();
+                double total = 0;
+                foreach (var item in listBill)
+                {
+                    int index = dgvInCome.Rows.Add();
+                    dgvInCome.Rows[index].Cells[0].Value = item.Bill.TableFood.name;
+                    dgvInCome.Rows[index].Cells[1].Value = item.Bill.DateCheckIn;
+                    dgvInCome.Rows[index].Cells[2].Value = item.Bill.DateCheckOut;
+                    dgvInCome.Rows[index].Cells[3].Value = item.Bill.discount;
+                    dgvInCome.Rows[index].Cells[4].Value = item.count * item.Food.price;
+                }
+            }
         }
     }
 }

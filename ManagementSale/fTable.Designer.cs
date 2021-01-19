@@ -34,6 +34,10 @@ namespace ManagementSale
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTable = new System.Windows.Forms.Label();
             this.dgvTableDetails = new System.Windows.Forms.DataGridView();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,10 +54,6 @@ namespace ManagementSale
             this.cmbFood = new System.Windows.Forms.ComboBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTableDetails)).BeginInit();
             this.panel3.SuspendLayout();
@@ -116,6 +116,44 @@ namespace ManagementSale
             this.dgvTableDetails.Size = new System.Drawing.Size(425, 425);
             this.dgvTableDetails.TabIndex = 0;
             // 
+            // colNo
+            // 
+            this.colNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colNo.FillWeight = 106.9519F;
+            this.colNo.HeaderText = "Tên";
+            this.colNo.MinimumWidth = 6;
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Width = 62;
+            // 
+            // colFoodName
+            // 
+            this.colFoodName.FillWeight = 97.68271F;
+            this.colFoodName.HeaderText = "SL";
+            this.colFoodName.MinimumWidth = 6;
+            this.colFoodName.Name = "colFoodName";
+            this.colFoodName.ReadOnly = true;
+            this.colFoodName.Width = 54;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colQuantity.HeaderText = "Giá";
+            this.colQuantity.MinimumWidth = 6;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.Width = 59;
+            // 
+            // colPrice
+            // 
+            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colPrice.FillWeight = 97.68271F;
+            this.colPrice.HeaderText = "Tổng cộng";
+            this.colPrice.MinimumWidth = 6;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            this.colPrice.Width = 105;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.txtTotalPrice);
@@ -137,7 +175,6 @@ namespace ManagementSale
             this.txtTotalPrice.Name = "txtTotalPrice";
             this.txtTotalPrice.Size = new System.Drawing.Size(100, 22);
             this.txtTotalPrice.TabIndex = 10;
-            this.txtTotalPrice.TextChanged += new System.EventHandler(this.txtTotalPrice_TextChanged);
             // 
             // label2
             // 
@@ -284,44 +321,6 @@ namespace ManagementSale
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(725, 619);
             this.flpTable.TabIndex = 9;
-            // 
-            // colNo
-            // 
-            this.colNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colNo.FillWeight = 106.9519F;
-            this.colNo.HeaderText = "Tên";
-            this.colNo.MinimumWidth = 6;
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Width = 62;
-            // 
-            // colFoodName
-            // 
-            this.colFoodName.FillWeight = 97.68271F;
-            this.colFoodName.HeaderText = "SL";
-            this.colFoodName.MinimumWidth = 6;
-            this.colFoodName.Name = "colFoodName";
-            this.colFoodName.ReadOnly = true;
-            this.colFoodName.Width = 54;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colQuantity.HeaderText = "Giá";
-            this.colQuantity.MinimumWidth = 6;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.Width = 59;
-            // 
-            // colPrice
-            // 
-            this.colPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colPrice.FillWeight = 97.68271F;
-            this.colPrice.HeaderText = "Tổng cộng";
-            this.colPrice.MinimumWidth = 6;
-            this.colPrice.Name = "colPrice";
-            this.colPrice.ReadOnly = true;
-            this.colPrice.Width = 105;
             // 
             // fTable
             // 

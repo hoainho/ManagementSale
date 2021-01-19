@@ -58,6 +58,7 @@ namespace ManagementSale.DAO
 
 
         }
+       
         public int ExecuteNonQuery(string query, object[] parameter = null)
         {
             int data = 0;

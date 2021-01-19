@@ -24,8 +24,21 @@ namespace ManagementSale.DAO
         {
             List<TableFood> listTable = new List<TableFood>();
             DataTable data = DataProvider.Instance.ExecuteQuery("EXEC GetTableList");
+            foreach(DataRow item in data.Rows)
+            {
+                TableFood table = new TableFood(item);
+                listTable.Add(table);
+            }
             return listTable;
         }
-
+        public void CheckoutTable(int id)
+        {
+            string query = "UPDATE TableFood SET status = N'Trống' WHERE id =" + id;
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
+        public void SwitchTable(int id1, int id2)
+        {
+            DataProvider.Instance.ExecuteQuery("SwitchTable @idTable1 , @idTable2",new object[]{id1,id2});
+        }
     }
 }
