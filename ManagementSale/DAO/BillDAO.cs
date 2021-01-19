@@ -45,9 +45,9 @@ namespace ManagementSale.DAO
                 return 1;
             }
         }
-        public void CheckOut(int id,int discount)
+        public void CheckOut(int id,int discount,int totalPrice)
         {
-            string query = "UPDATE Bill SET DateCheckOut = GetDate() ,status = 1 " +",discount= "+discount+ " WHERE id =" + id ;
+            string query = "UPDATE Bill SET DateCheckOut = GetDate() ,status = 1 " +",discount= "+discount+ ",totalPrice = " + totalPrice + " WHERE id =" + id ;
             DataProvider.Instance.ExecuteNonQuery(query);
         }
     }

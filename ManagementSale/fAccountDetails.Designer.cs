@@ -34,8 +34,6 @@ namespace ManagementSale
             this.txtAccountName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPasswordOld = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPasswordNew = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -88,28 +86,11 @@ namespace ManagementSale
             this.txtUserName.Size = new System.Drawing.Size(246, 22);
             this.txtUserName.TabIndex = 2;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(339, 307);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 20);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Mật Khẩu :";
-            // 
-            // txtPasswordOld
-            // 
-            this.txtPasswordOld.Location = new System.Drawing.Point(445, 307);
-            this.txtPasswordOld.Name = "txtPasswordOld";
-            this.txtPasswordOld.Size = new System.Drawing.Size(246, 22);
-            this.txtPasswordOld.TabIndex = 2;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(307, 354);
+            this.label4.Location = new System.Drawing.Point(307, 306);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 20);
             this.label4.TabIndex = 1;
@@ -117,7 +98,7 @@ namespace ManagementSale
             // 
             // txtPasswordNew
             // 
-            this.txtPasswordNew.Location = new System.Drawing.Point(445, 354);
+            this.txtPasswordNew.Location = new System.Drawing.Point(445, 306);
             this.txtPasswordNew.Name = "txtPasswordNew";
             this.txtPasswordNew.Size = new System.Drawing.Size(246, 22);
             this.txtPasswordNew.TabIndex = 2;
@@ -126,7 +107,7 @@ namespace ManagementSale
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(267, 403);
+            this.label5.Location = new System.Drawing.Point(267, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 20);
             this.label5.TabIndex = 1;
@@ -134,19 +115,20 @@ namespace ManagementSale
             // 
             // txtPasswordConfirm
             // 
-            this.txtPasswordConfirm.Location = new System.Drawing.Point(445, 403);
+            this.txtPasswordConfirm.Location = new System.Drawing.Point(445, 355);
             this.txtPasswordConfirm.Name = "txtPasswordConfirm";
             this.txtPasswordConfirm.Size = new System.Drawing.Size(246, 22);
             this.txtPasswordConfirm.TabIndex = 2;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(604, 451);
+            this.btnUpdate.Location = new System.Drawing.Point(481, 423);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(87, 58);
             this.btnUpdate.TabIndex = 3;
             this.btnUpdate.Text = "Cập Nhật";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -165,18 +147,18 @@ namespace ManagementSale
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtPasswordConfirm);
             this.Controls.Add(this.txtPasswordNew);
-            this.Controls.Add(this.txtPasswordOld);
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.txtAccountName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblUpdateProfile);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "fAccountDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "fAccountDetails";
+            this.Load += new System.EventHandler(this.fAccountDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,8 +172,6 @@ namespace ManagementSale
         private System.Windows.Forms.TextBox txtAccountName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtPasswordOld;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPasswordNew;
         private System.Windows.Forms.Label label5;

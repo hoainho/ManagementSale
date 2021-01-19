@@ -127,8 +127,9 @@ namespace ManagementSale
                         dgvTableDetails.Rows[index].Cells[3].Value = item.Totalprice;
                         total += item.Totalprice;
                     }
-                    CultureInfo culture = new CultureInfo("vi-VN");
-                    txtTotalPrice.Text = total.ToString("c", culture);
+                    txtTotalPrice.Text = total.ToString();
+                    //CultureInfo culture = new CultureInfo("vi-VN");
+                    //txtTotalPrice.Text = string.Format("c",culture);
             }
 
         }
@@ -163,11 +164,12 @@ namespace ManagementSale
             TableFood table = dgvTableDetails.Tag as TableFood;
             int billID = BillDAO.Instance.GetIDBillbyIDTable(table.id);
             int Discount = (int)nmDiscount.Value;
-            if(billID != -1)
+            int totalPrice = int.Parse(txtTotalPrice.Text.ToString());
+            if (billID != -1)
             {
                 if (MessageBox.Show("Sử dụng mã giảm giá "+Discount+"%" + " cho bàn " +table.id +"\n           Xác nhận Thanh Toán ?", "Xác Nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) 
                 {
-                    BillDAO.Instance.CheckOut(billID,Discount);
+                    BillDAO.Instance.CheckOut(billID,Discount, totalPrice);
                     TableDAO.Instance.CheckoutTable(table.id);
                     bindDgvBill(table.id);
                 }
