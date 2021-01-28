@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ManagementSale.Models;
+using Microsoft.Office.Interop.Excel;
+using app = Microsoft.Office.Interop.Excel.Application;
 namespace ManagementSale
 {
     public partial class Admin : Form
@@ -102,9 +105,137 @@ namespace ManagementSale
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Vui Lòng Kết Nối Với Máy In (Error 404)","Nhắc Nhở",MessageBoxButtons.RetryCancel,MessageBoxIcon.Warning);
+            OpenFileDialog uploadFileSteam = new OpenFileDialog();
+
+            uploadFileSteam.InitialDirectory = "D:\\";
+            uploadFileSteam.Filter = "Excel|*.xls;*.xlsx";
+
+            if (uploadFileSteam.ShowDialog() == DialogResult.OK)
+            {
+                ExportToExcel(dgvInCome, Directory.GetCurrentDirectory(), uploadFileSteam.FileName, "Báo Cáo Bán Hàng");
+            }
+            
         }
 
+        private void ExportToExcel(DataGridView dgv, string LinkSave,string fileName,string NameReport)
+        {
+            //Tạo các đối tượng Excel
+            app obj = new app();
+            Microsoft.Office.Interop.Excel.Workbooks oBooks;
+
+            Microsoft.Office.Interop.Excel.Sheets oSheets;
+
+            Microsoft.Office.Interop.Excel.Workbook oBook;
+
+            Microsoft.Office.Interop.Excel.Worksheet oSheet;
+
+            //Tạo mới một Excel WorkBook 
+
+            obj.Visible = true;
+
+            obj.DisplayAlerts = false;
+
+            obj.Application.SheetsInNewWorkbook = 1;
+
+            oBooks = obj.Workbooks;
+
+            oBook = (Microsoft.Office.Interop.Excel.Workbook)(obj.Workbooks.Add(Type.Missing));
+
+            oSheets = oBook.Worksheets;
+
+            oSheet = (Microsoft.Office.Interop.Excel.Worksheet)oSheets.get_Item(1);
+
+            oSheet.Name = fileName;
+
+            // Tạo phần đầu nếu muốn
+
+            Microsoft.Office.Interop.Excel.Range head = oSheet.get_Range("A1", "C1");
+
+            head.MergeCells = true;
+
+            head.Value2 = NameReport;
+
+            head.Font.Bold = true;
+
+            head.Font.Name = "Tahoma";
+
+            head.Font.Size = "18";
+
+            head.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+
+            // Tạo tiêu đề cột 
+
+            Microsoft.Office.Interop.Excel.Range cl1 = oSheet.get_Range("A3", "A3");
+
+            cl1.Value2 = "Số Bàn";
+
+            cl1.ColumnWidth = 13.5;
+
+            Microsoft.Office.Interop.Excel.Range cl2 = oSheet.get_Range("B3", "B3");
+
+            cl2.Value2 = "Thời Gian Vào";
+
+            cl2.ColumnWidth = 25.0;
+
+            Microsoft.Office.Interop.Excel.Range cl3 = oSheet.get_Range("C3", "C3");
+
+            cl3.Value2 = "Thời Gian Ra";
+
+            cl3.ColumnWidth = 50.0;
+
+            Microsoft.Office.Interop.Excel.Range cl4 = oSheet.get_Range("D3", "D3");
+
+            cl4.Value2 = " Trạng Thái";
+
+            cl4.ColumnWidth = 50.0;
+
+            Microsoft.Office.Interop.Excel.Range cl5 = oSheet.get_Range("E3", "E3");
+
+            cl5.Value2 = "Giảm Giá";
+
+            cl5.ColumnWidth = 50.0;
+
+            Microsoft.Office.Interop.Excel.Range cl6 = oSheet.get_Range("F3", "F3");
+
+            cl6.Value2 = " Tổng Cộng";
+
+            cl6.ColumnWidth = 50.0;
+
+            Microsoft.Office.Interop.Excel.Range rowHead = oSheet.get_Range("A3", "G3");
+
+            rowHead.Font.Bold = true;
+
+            // Kẻ viền
+
+            rowHead.Borders.LineStyle = Microsoft.Office.Interop.Excel.Constants.xlSolid;
+
+            // Thiết lập màu nền
+
+            rowHead.Interior.ColorIndex = 15;
+
+            rowHead.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            
+            obj.Application.Workbooks.Add(Type.Missing);
+            // Tạo phần đầu nếu muốn
+
+            for(int i = 1; i < dgv.Rows.Count + 1; i++)
+            {
+                obj.Cells[1, i] = dgv.Columns[i - 1].HeaderText;
+            }
+            for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                for (int j = 0; j < dgv.Columns.Count; j++)
+                {
+                    if(dgv.Rows[i].Cells[j].Value != null)
+                    {
+                        obj.Cells[i + 2, j + 1] = dgv.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+            }
+            obj.ActiveWorkbook.SaveCopyAs(LinkSave + fileName + ".xlsx");
+            obj.ActiveWorkbook.Saved = true;
+
+        }
         public void ShowCmbCateFood()
         {
             using (var _contextDB = new CoffeeContextDB())
@@ -543,7 +674,11 @@ namespace ManagementSale
                 ShowAccount(_contextDB.Accounts.ToList());
             }
         }
-        
+        private void btnOutput_Click_1(object sender, EventArgs e)
+        {
+            fReport fReport = new fReport();
+            fReport.Show();
+        }
     }
 
 }

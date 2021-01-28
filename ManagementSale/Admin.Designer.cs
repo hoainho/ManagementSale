@@ -30,7 +30,7 @@ namespace ManagementSale
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Admin));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpAccount = new System.Windows.Forms.TabPage();
             this.panel18 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
@@ -504,8 +504,8 @@ namespace ManagementSale
             // 
             // colTableID
             // 
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colTableID.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colTableID.DefaultCellStyle = dataGridViewCellStyle2;
             this.colTableID.HeaderText = "Mã Bàn";
             this.colTableID.MinimumWidth = 6;
             this.colTableID.Name = "colTableID";
@@ -1285,7 +1285,7 @@ namespace ManagementSale
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(135, 61);
             this.btnPrint.TabIndex = 1;
-            this.btnPrint.Text = "In Thống Kê";
+            this.btnPrint.Text = "Xuất Excel";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -1298,6 +1298,7 @@ namespace ManagementSale
             this.btnOutput.TabIndex = 1;
             this.btnOutput.Text = "Xuất Thống Kê";
             this.btnOutput.UseVisualStyleBackColor = false;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click_1);
             // 
             // btnView
             // 

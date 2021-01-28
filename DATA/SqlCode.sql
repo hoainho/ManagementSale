@@ -11,8 +11,13 @@ CREATE PROC InsertBill
 @userName nvarchar(100) = "user"
 as 
 begin
-	INSERT Bill ( DateCheckIn , DateCheckOut , idTable , status, UserName )
-	VALUES           ( GETDATE() , Null , @idTable , 0 , @userName)
+
+
+	Select * from bill, BillInfo where idTable = 13
+
+
+	INSERT Bill ( DateCheckIn , DateCheckOut , idTable , status, UserName,totalPrice )
+	VALUES           ( GETDATE() , Null , @idTable , 0 , @userName,)
 end
 go
 CREATE PROC InsertTable
@@ -181,3 +186,52 @@ select * from bill where idTable = 5
 EXEC SwitchTable @idTable1 = 11, @idTable2 = 5
  
 --------------------------------------------------------
+
+CREATE PROC MergeTable
+@IdTable1 int , @IdTable2 int
+As Begin 
+	Declare @idFirstBill int
+
+	Declare @idSecondBill int
+
+	Declare @idFirstBillEmpty int =1 
+
+	Declare @idSecondBillEmpty int =1
+
+	Select @idSecondBill = id from Bill where idTable = @IdTable2 AND status =0
+
+	Select @idFirstBill = id from Bill where idTable = @IdTable1  AND status =0
+	IF(@idFirstBill IS NULl)
+	BEGIN 
+		INSERT Bill
+		( DateCheckIn, DateCheckOut, idTable, status,UserName )
+		VALUES 
+		( GETDATE(), null, @IdTable1, 0, 'user' )
+		SELECT @idFirstBill = Max(id) from Bill where idTable = @IdTable1  AND status =0
+	END
+
+	SELECT @idFirstBillEmpty = Count(*) from BillInfo WHERE idBill =@idFirstBill
+
+
+	IF(@idSecondBill IS NULl)
+	BEGIN 
+		INSERT Bill
+		(DateCheckIn, DateCheckOut, idTable, status, UserName )
+		VALUES 
+		( GETDATE(), null, @IdTable2, 0, 'user' )
+		SELECT @idSecondBill = Max(id) from bill where idTable = @IdTable2 AND status =0
+	END
+
+	SELECT @idSecondBillEmpty = Count(*) from BillInfo WHERE idBill =@idSecondBill
+
+	SELECT id into temp FROM BillInfo WHERE idBill = @idSecondBill
+	Update BillInfo SET idBill = @idSecondBill WHERE idBill = @idFirstBill
+	Update BillInfo SET idBill = @idFirstBill WHERE id IN (Select * from temp)
+	select id from temp
+	DROP TABLE temp
+	IF(@idFirstBillEmpty = 0)
+	UPDATE	TableFood SET status = N'Trống' WHERE id = @IdTable2
+	IF(@idSecondBillEmpty = 0)
+	UPDATE	TableFood SET status = N'Trống' WHERE id = @IdTable1
+END
+Go

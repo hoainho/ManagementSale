@@ -59,7 +59,7 @@ namespace ManagementSale
             cmbTableChange.DisplayMember = "name";
             cmbTableChange.ValueMember = "id";
         }
-        
+
         private void InitTable()
         {
             flpTable.Controls.Clear();
@@ -67,7 +67,7 @@ namespace ManagementSale
             foreach (TableFood item in listTable)
             {
                 //Init Button = Bàn
-                Button btnTable = new Button() {  Width = 100, Height = 100 };
+                Button btnTable = new Button() { Width = 100, Height = 100 };
                 btnTable.Name = "btnTable" + item.id;
                 btnTable.TabIndex = 0;
                 btnTable.Text = item.name + Environment.NewLine + item.status;
@@ -100,10 +100,10 @@ namespace ManagementSale
         {
             int btnId = (btnTable.Tag as TableFood).id;
             lblTableName.Text = "Bàn Số " + btnId; //Hien thi so ban
-            
+
             if (btnTable.BackColor != Color.DarkGoldenrod)
             {
-                if(this.SelectedTable != null)
+                if (this.SelectedTable != null)
                 {
                     this.SelectedTable.BackColor = Color.White;
                 }
@@ -113,23 +113,23 @@ namespace ManagementSale
         }
         private void bindDgvBill(int id)
         {
-            using(CoffeeContextDB _contextDB = new CoffeeContextDB())
+            using (CoffeeContextDB _contextDB = new CoffeeContextDB())
             {
-                    List<List> listBillInfo = MenuDAO.Instance.GetListMenu(id);
-                    dgvTableDetails.Rows.Clear();
-                    float total = 0;
-                    foreach (List item in listBillInfo)
-                    {
-                        int index = dgvTableDetails.Rows.Add();
-                        dgvTableDetails.Rows[index].Cells[0].Value = item.name;
-                        dgvTableDetails.Rows[index].Cells[1].Value = item.count;
-                        dgvTableDetails.Rows[index].Cells[2].Value = item.Price;
-                        dgvTableDetails.Rows[index].Cells[3].Value = item.Totalprice;
-                        total += item.Totalprice;
-                    }
-                    txtTotalPrice.Text = total.ToString();
-                    //CultureInfo culture = new CultureInfo("vi-VN");
-                    //txtTotalPrice.Text = string.Format("c",culture);
+                List<List> listBillInfo = MenuDAO.Instance.GetListMenu(id);
+                dgvTableDetails.Rows.Clear();
+                float total = 0;
+                foreach (List item in listBillInfo)
+                {
+                    int index = dgvTableDetails.Rows.Add();
+                    dgvTableDetails.Rows[index].Cells[0].Value = item.name;
+                    dgvTableDetails.Rows[index].Cells[1].Value = item.count;
+                    dgvTableDetails.Rows[index].Cells[2].Value = item.Price;
+                    dgvTableDetails.Rows[index].Cells[3].Value = item.Totalprice;
+                    total += item.Totalprice;
+                }
+                txtTotalPrice.Text = total.ToString();
+                //CultureInfo culture = new CultureInfo("vi-VN");
+                //txtTotalPrice.Text = string.Format("c",culture);
             }
 
         }
@@ -139,7 +139,7 @@ namespace ManagementSale
             List<Food> listFood = context.Foods.ToList().Where(p => p.FoodCategory.name == cmbCategory.Text).ToList();
             cmbFoody(listFood);
         }
-        
+
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             TableFood table = dgvTableDetails.Tag as TableFood;
@@ -149,7 +149,7 @@ namespace ManagementSale
             if (idBill == -1) //Bill chưa tồn tại
             {
                 BillDAO.Instance.InsertBill(table.id);
-                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(),FoodID,count);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(), FoodID, count);
             }
             else
             {
@@ -167,9 +167,9 @@ namespace ManagementSale
             int totalPrice = int.Parse(txtTotalPrice.Text.ToString());
             if (billID != -1)
             {
-                if (MessageBox.Show("Sử dụng mã giảm giá "+Discount+"%" + " cho bàn " +table.id +"\n           Xác nhận Thanh Toán ?", "Xác Nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK) 
+                if (MessageBox.Show("Sử dụng mã giảm giá " + Discount + "%" + " cho bàn " + table.id + "\n           Xác nhận Thanh Toán ?", "Xác Nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    BillDAO.Instance.CheckOut(billID,Discount, totalPrice);
+                    BillDAO.Instance.CheckOut(billID, Discount, totalPrice);
                     TableDAO.Instance.CheckoutTable(table.id);
                     bindDgvBill(table.id);
                 }
@@ -179,14 +179,53 @@ namespace ManagementSale
 
         private void btnSwitchTable_Click(object sender, EventArgs e)
         {
-            int table1 = (dgvTableDetails.Tag as TableFood).id; 
+            int table1 = (dgvTableDetails.Tag as TableFood).id;
             int table2 = (cmbTableChange.SelectedItem as TableFood).id;
-            if(MessageBox.Show("Chuyen tu ban" + (dgvTableDetails.Tag as TableFood).name + " sang ban "+ (cmbTableChange.SelectedItem as TableFood).name , "Thong Bao", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Chuyen tu ban" + (dgvTableDetails.Tag as TableFood).name + " sang ban " + (cmbTableChange.SelectedItem as TableFood).name, "Thong Bao", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 TableDAO.Instance.SwitchTable(table1, table2);
-                
+
             }
             InitTable();
+        }
+
+        private void btnMergeTable_Click(object sender, EventArgs e)
+        {
+            // Cần ID Bàn
+            int table1 = (dgvTableDetails.Tag as TableFood).id;
+            int table2 = (cmbTableChange.SelectedItem as TableFood).id;
+            if (MessageBox.Show("Chuyen tu ban" + (dgvTableDetails.Tag as TableFood).name + " sang ban " + (cmbTableChange.SelectedItem as TableFood).name, "Thong Bao", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                TableDAO.Instance.MergeTable(table1, table2);
+
+            }
+            InitTable();
+        }   
+
+        private void btnSwitchFood_Click(object sender, EventArgs e)
+        {
+            //Cần id bàn + id Món ( CellClick để lấy Row )
+
+        }
+
+        private void dgvTableDetails_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            if (index >= 0) 
+            { 
+                cmbCategory.Text = dgvTableDetails.Rows[index].Cells[0].Value.ToString();
+                cmbFood.Text = dgvTableDetails.Rows[index].Cells[1].Value.ToString();
+                nmFoodCount.Value = decimal.Parse(dgvTableDetails.Rows[index].Cells[2].Value.ToString());
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

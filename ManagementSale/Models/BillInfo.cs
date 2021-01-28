@@ -25,6 +25,14 @@ namespace ManagementSale.Models
             this.count = (int)item["count"];
         }
 
+        public BillInfo()
+        {
+            this.id = 0;
+            this.idBill = 0;
+            this.idFood = 0;
+            this.count = 0;
+        }
+
         public int id { get; set; }
 
         public int idBill { get; set; }
