@@ -40,5 +40,9 @@ namespace ManagementSale.DAO
         {
             DataProvider.Instance.ExecuteQuery("SwitchTable @idTable1 , @idTable2",new object[]{id1,id2});
         }
+        public void  MergeTable(int id1, int id2)
+        {
+            DataProvider.Instance.ExecuteQuery("MergeTable @idTable1 , @idTable2", new object[] { id1, id2 });
+        }
     }
 }
